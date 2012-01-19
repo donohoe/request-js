@@ -1,0 +1,158 @@
+body {
+	background: #F9F9F9;
+	font: 14px/1.642 "Helvetic Neue", Helvetica, Arial, Verdana, sans-serif;
+	color: #363636;
+	margin: 0;
+	padding: 0;
+}
+
+#index {
+	display: inline-table;
+	background: #F0F0F0 url(../img/bkgnd.gif) repeat -70% 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* General */
+
+h1 {
+	font-size: 28px;
+	padding: 0;
+	margin: 0 0 0 20px;
+}
+
+div.item {
+	float: left;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin: 20px 0 0px 20px;
+
+	background: white;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.07);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.07);
+	box-shadow: 0 1px 2px rgba(0,0,0,.07);
+}
+
+div.item > img {
+	position: relative;
+	z-index: 90;
+	width: auto;  // 100%;
+	height: 105%; // auto;
+	opacity: 0.6;
+	transition:         opacity 190ms linear;
+	-o-transition:      opacity 190ms linear;
+	-moz-transition:    opacity 190ms linear;
+	-webkit-transition: opacity 190ms linear;
+}
+
+div.item:hover > img {
+	opacity: 1;
+}
+
+div.item img.wider {
+	width: 105%;
+	height: auto;
+}
+
+div.wrapper {
+	position: absolute;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 22px;
+	margin: 0 0 14px 0;
+	padding: 0;
+	z-index: 100;
+	top: 0;
+}
+
+div.item,
+div.wrapper {
+	width: 220px;
+	height: 200px;
+}
+
+div.wrapper span,
+div.title a, 
+div.title a span {
+	color: #fff;
+	text-decoration: none;
+}
+
+div.title {
+	font: 14px/1.642 "Helvetic Neue", Helvetica, Arial, Verdana, sans-serif;
+	display: block;
+	float: left;
+	padding: 10px 10px 0 10px;
+}
+
+div.title span {
+	padding: 2px 3px;
+	background-color: rgba(0,0,0, 0.7);
+	float: left;
+}
+
+div.lead {
+	padding: 0 10px;
+	font-size: 12px;
+	line-height: 1.3em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	clear: both;
+}
+
+div.lead p:first-child {
+	padding-top: 0;
+	margin-top: 5px;
+}
+
+div.meta-overlay,
+div.meta {
+	width: 100%;
+	display: initial;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 12px;
+	z-index: 1000;
+}
+
+div.meta-overlay {
+	height: 31px;
+	z-index: 900;
+	background-color: white;
+	opacity: 0.9;
+}
+
+div.meta span {
+	padding: 3px 7px;
+	background-color: rgba(0, 0, 0, 0.4);
+	line-height: 13px;
+	font-size: 11px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 115px;
+	margin: 6px;
+	cursor: default;
+}
+
+span.domain {
+	float: right;
+	font-size: 11px;
+}
+
+span.rank {
+	display: none;
+}
+
+span.score {
+	float: left;
+}
+
+/* Common */
+
+.rounded {
+	border-radius: 8px;
+}

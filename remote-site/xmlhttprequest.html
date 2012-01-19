@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title></title>
+    <script src="json2-min.js"></script>
+    <script>
+	// Provide the XMLHttpRequest class for IE 5.x-6.x:
+	if( typeof XMLHttpRequest == "undefined" ) XMLHttpRequest = function() {
+	  try { return new ActiveXObject("Msxml2.XMLHTTP.6.0") } catch(e) {}
+	  try { return new ActiveXObject("Msxml2.XMLHTTP.3.0") } catch(e) {}
+	  try { return new ActiveXObject("Msxml2.XMLHTTP") } catch(e) {}
+	  try { return new ActiveXObject("Microsoft.XMLHTTP") } catch(e) {}
+	  throw new Error( "This browser does not support XMLHttpRequest." )
+	};
+
+	var HTTP = (function() {
+
+	  var callback, transport = new XMLHttpRequest();
+	  transport.onreadystatechange = stateChange;
+
+	  function stateChange() {
+	    if (transport.readyState==4) {
+	      callback(transport);
+	    }
+	  }
+
+	  return {
+	    request: function(url, method, params, fn) {
+	      switch(method) {
+	        case 'post':
+	          this.post(url, params, fn);
+	          break;
+	        case 'get':
+	        default:
+	          this.get(url, fn);
+	          break;
+	      }
+	    },
+
+	    get: function(url, fn) {
+	      callback = fn;
+	      transport.open("GET", url, true);
+	      transport.send('');
+	    },
+
+	    post: function(url, post, fn) {
+	      callback = fn;
+	      transport.open("POST", url, true);
+	      transport.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	      transport.setRequestHeader('Connection', 'close');
+	      transport.send(post);
+	    }
+	  }
+
+	})();
+
+	var arguments = /\?url=(.*)&method=(.*)&params=(.*)&bell=(.*)/.test(unescape(window.location.href)) ? 
+	  {url: RegExp.$1, method: RegExp.$2, params: RegExp.$3, bell: RegExp.$4} : {};
+
+	var url    = arguments.url;
+	var method = arguments.method || 'get';
+	var params = arguments.params || '';
+	var bell   = arguments.bell;
+
+	if (!url || url.indexOf('/') != 0 && url.indexOf(window.location.hostname) == -1) {
+	  throw 'A Request URI in the same domain as ' + window.location.hostname + ' must be provided';
+	}
+
+	if (!bell) {
+	  throw "A Callback URI in the same domain as the parent window must be provided";
+	}
+
+	function handleResponse(request) {
+	  var response = {status: request.status, responseText: request.responseText};
+	  window.name = JSON.stringify(response);
+	  window.location.replace(bell);
+	}
+
+	HTTP.request(url, method, params, handleResponse);
+    </script>
+  </head>
+  <body></body>
+</html>

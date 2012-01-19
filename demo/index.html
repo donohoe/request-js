@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Hacker Views</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="css/styles.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="http://documentcloud.github.com/underscore/underscore-min.js" type="text/javascript"></script>
+</head>
+<body>
+	<h1>Hacker Views</h1>
+	<div id="index"></div>
+
+    <!-- Templates -->
+    <script type="text/template" id="tmpl_item">
+		<div class='item'>
+			<% if (meta.image) { %>
+				<img src='<%= meta.image.src %>' alt=''/>
+			<% } %>
+			<div class='wrapper'>
+				<div class='title'>
+					<a href='<%= url %>'><%= title %></a>
+				</div>
+<!--
+			<% if (!meta.image && meta.lead) { %>
+				<div class="lead"><%= meta.lead %></div>
+			<% } %>
+-->
+				<div class='meta-overlay'></div>
+				<div class='meta'>
+					<% if (domain) { %>
+					<span class='rounded domain'><%= domain %></span>
+					<% } %>
+					<span class='rounded rank'><%= rank %></span>
+					<% if (score) { %>
+			    	<span class='rounded score'><%= score %></span>
+					<% } %>
+				</div>
+			</div>
+		</div>
+    </script>
+
+    <script type="text/template" id="tmpl_item">
+      <div class="todo <%= done ? 'done' : '' %>">
+        <div class="display">
+          <input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="stats-template">
+      <% if (total) { %>
+        <span class="todo-count">
+          <span class="number"><%= remaining %></span>
+          <span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.
+        </span>
+      <% } %>
+    </script>
+
+	<script src="js/request.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
