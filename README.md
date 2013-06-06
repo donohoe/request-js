@@ -65,7 +65,7 @@ Then you should have:
 
 Instead of passing `bell` and `tunnel` each time you make a request, you can modify `request.js` to provide default values:
 
-	var pathBell  = "bell.hmtl";
+	var pathBell  = "bell.html";
 	var uriTunnel = "http://dl.dropbox.com/u/123029/request/xmlhttprequest.html";
 
 Passing values for `bell` and `tunnel` in a request will over-ride defaults.
