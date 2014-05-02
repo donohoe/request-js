@@ -38,7 +38,7 @@ Include the following in the `<head>` of your document:
 And the example:
 
 	<script>
-	var url = "http://dl.dropbox.com/u/362483/Project/HN/news.js"; // Regenerated from Hacker News (http://news.ycombinator.com/) every 30 minutes
+	var url = "http://dl.dropboxusercontent.com/u/362483/Project/HN/news.js"; // Regenerated from Hacker News (http://news.ycombinator.com/) every 30 minutes
 
     var options  = {
 		callback: function(response){
@@ -48,7 +48,7 @@ And the example:
 			console.log(response.responseText);
 		},
 		bell:    "bell.html",
-		tunnel:  "http://dl.dropbox.com/u/123029/request/xmlhttprequest.html"
+		tunnel:  "http://dl.dropboxusercontent.com/u/123029/request/xmlhttprequest.html"
     };
 
 	new Request(url, options);
@@ -61,12 +61,12 @@ The value for `bell` must be the full relative path to website. So if the full p
 Then you should have:
 
 		bell:    "/path/to/bell.html",
-		tunnel:  "http://dl.dropbox.com/u/123029/request/xmlhttprequest.html"
+		tunnel:  "http://dl.dropboxusercontent.com/u/123029/request/xmlhttprequest.html"
 
 Instead of passing `bell` and `tunnel` each time you make a request, you can modify `request.js` to provide default values:
 
 	var pathBell  = "bell.html";
-	var uriTunnel = "http://dl.dropbox.com/u/123029/request/xmlhttprequest.html";
+	var uriTunnel = "http://dl.dropboxusercontent.com/u/123029/request/xmlhttprequest.html";
 
 Passing values for `bell` and `tunnel` in a request will over-ride defaults.
 
